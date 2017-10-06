@@ -23,3 +23,18 @@
 <button (click)="spanisMessage()">Spanish</button>
 <button (click)="frenchMessage()">French</button>
 
+<hr>
+
+<div *ngIf="post | async as p">
+
+  <h2>{{p.text}}</h2>
+  <h4>Votes: {{p.likes}}</h4>
+
+  <button (click)="upvote()">Upvote</button>
+  <button (click)="downvote()">Downvote</button>
+  <button (click)="resetPost()">Reset</button>
+
+  <input [(ngModel)]="text" type="text">
+
+  <button (click)="editText()">Change title</button>
+</div>

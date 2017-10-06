@@ -6,6 +6,8 @@ import { StoreModule } from '@ngrx/store';
 
 import { AppComponent } from './app.component';
 import { simpleReducer } from './_reducers/simple.reduser';
+import { postReducer } from './_reducers/post.reducer';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -13,10 +15,12 @@ import { simpleReducer } from './_reducers/simple.reduser';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     StoreModule.forRoot({
+      post: postReducer,
       message: simpleReducer
     }),
-    StoreDevtoolsModule.instrument()
+    StoreDevtoolsModule.instrument(),
   ],
   providers: [],
   bootstrap: [AppComponent]
