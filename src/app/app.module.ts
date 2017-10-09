@@ -4,23 +4,32 @@ import { NgModule } from '@angular/core';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
 
-import { AppComponent } from './app.component';
 import { simpleReducer } from './_reducers/simple.reduser';
 import { postReducer } from './_reducers/post.reducer';
-import { FormsModule } from '@angular/forms';
+
+import { AppComponent } from './app.component';
+
+import { CoursesModule } from './modules/courses/courses.module';
+import { AuthModule } from './modules/auth/auth.module';
+import { AppRoutingModule } from './app.routing.module';
+
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
+    AuthModule,
+    CoursesModule,
     BrowserModule,
-    FormsModule,
     StoreModule.forRoot({
       post: postReducer,
       message: simpleReducer
     }),
     StoreDevtoolsModule.instrument(),
+    AppRoutingModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
