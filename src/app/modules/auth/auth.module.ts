@@ -1,17 +1,20 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+
 import { LoginPageComponent } from './login-page/login-page.component';
+
+import { LoginPageService } from './login-page/login-page.service';
 
 
 
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule,
+    ReactiveFormsModule
   ],
 
-  providers: [],
+  providers: [LoginPageService],
 
   declarations: [
     LoginPageComponent
