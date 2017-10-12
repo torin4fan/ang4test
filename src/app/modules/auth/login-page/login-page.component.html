@@ -16,11 +16,14 @@
     <div class="form-group row">
       <label for="password" class="col-sm-3 col-form-label">Password: </label>
       <div class="col-sm-9">
-        <input formControlName="passwordUser"
-               id="password"
-               name="password"
-               type="password"
-               placeholder="Password">
+          <tr-form-control [control] = "passwordControl">
+            <input formControlName="passwordUser"
+                   id="password"
+                   name="password"
+                   type="password"
+                   placeholder="Password">
+          </tr-form-control>
+
       </div>
     </div>
     <div class="form-group">

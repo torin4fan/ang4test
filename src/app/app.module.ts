@@ -12,16 +12,13 @@ import { AppComponent } from './app.component';
 import { CoursesModule } from './modules/courses/courses.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { AppRoutingModule } from './app.routing.module';
-import { ErrorShowComponent } from './core/components/error-show/error-show.component';
-import { FormControlComponent } from './core/components/form-control/form-control.component';
+
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ErrorShowComponent,
-    FormControlComponent,
   ],
   imports: [
     AuthModule,

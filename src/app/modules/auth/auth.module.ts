@@ -5,13 +5,15 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LoginPageComponent } from './login-page/login-page.component';
 
 import { LoginPageService } from './login-page/login-page.service';
+import { CoreModule } from '../../core/core.module';
 
 
 
 @NgModule({
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CoreModule
   ],
 
   providers: [LoginPageService],
