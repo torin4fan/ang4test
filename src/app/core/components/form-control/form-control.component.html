@@ -1,6 +1,2 @@
-<p>
-  {{ controlValue | json}}
-  {{ awd }}
-  <ng-content></ng-content>
-  <tr-error-show></tr-error-show>
-</p>
+<ng-content></ng-content>
+<tr-error-show *ngIf="control" [controlError] = "control"></tr-error-show>

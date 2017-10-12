@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { FormGroup, Validators } from '@angular/forms';
 import { LoginPageService } from './login-page.service';
 
 
@@ -7,34 +7,38 @@ import { LoginPageService } from './login-page.service';
 @Component({
   selector: 'tr-login-page',
   templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.scss']
+  styleUrls: ['./login-page.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 
 export class LoginPageComponent implements OnInit {
   authForm: FormGroup;
-  passwordControl: any;
+  loginControl: Validators;
+  passwordControl: Validators;
 
   constructor(private loginPageService: LoginPageService) {
   }
 
   ngOnInit() {
     this.authForm = this.loginPageService.createForm();
-    this.passwordControl = this.authForm.get('passwordUser');
+
+    /*this.loginControl = this.authForm.get('loginUser').valueChanges.subscribe((data) => {
+      console.log(data, 'data')
+    });
+
+    setTimeout(() => this.afterParentInit());
 
     this.authForm
       .valueChanges
       .subscribe(() => {
+        this.loginControl = this.authForm.get('loginUser').errors;
         this.passwordControl = this.authForm.get('passwordUser').errors;
-        // console.log(this.authForm.get('passwordUser'));
-        /*this.passwordControl = math.random();*/
-        /*console.log(this.authForm.controls);
-        console.log(!!this.authForm.controls.loginUser.errors);*/
-        /*if (this.authForm.get('passwordUser').errors) {
-          console.log(this.authForm.get('passwordUser').errors.pattern.requiredPattern);
-        }
-*/
-      });
+      });*/
+  }
+
+  afterParentInit() {
+
   }
 
   checkStatusValid(): boolean {

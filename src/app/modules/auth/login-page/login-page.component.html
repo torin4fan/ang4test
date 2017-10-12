@@ -5,18 +5,20 @@
     <div class="form-group row">
       <label for="login" class="col-sm-3 col-form-label">Login: </label>
       <div class="col-sm-9">
-        <input formControlName="loginUser"
-               id="login"
-               name="login"
-               type="text"
-               placeholder="Login" >
+        <tr-form-control [control] = "authForm.get('loginUser')">
+          <input formControlName="loginUser"
+                 id="login"
+                 name="login"
+                 type="text"
+                 placeholder="Login" >
+        </tr-form-control>
       </div>
     </div>
 
     <div class="form-group row">
       <label for="password" class="col-sm-3 col-form-label">Password: </label>
       <div class="col-sm-9">
-          <tr-form-control [control] = "passwordControl">
+          <tr-form-control [control] = "authForm.get('passwordUser')">
             <input formControlName="passwordUser"
                    id="password"
                    name="password"
