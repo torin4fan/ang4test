@@ -1,3 +1,5 @@
-<p>
-  error-show works! {{superValue }}
-</p>
+<div *ngIf="checkRequired()">Field is required</div>
+
+<div *ngIf="checkPatternNumbAndLatin()">Please use just number and latin characters</div>
+
+<div *ngIf="checkPatternLatin()">Please use just latin characters</div>
