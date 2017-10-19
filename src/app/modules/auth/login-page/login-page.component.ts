@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { LoginPageService } from './login-page.service';
 
@@ -11,18 +11,37 @@ import { LoginPageService } from './login-page.service';
 })
 
 
-export class LoginPageComponent implements OnInit {
+export class LoginPageComponent implements OnInit, OnDestroy {
   authForm: FormGroup;
+  resultLogin: any;
+  errorHandler: boolean;
 
   constructor(private loginPageService: LoginPageService) {
   }
 
   ngOnInit() {
     this.authForm = this.loginPageService.createForm();
+    this.errorHandler = false;
   }
 
   checkStatusValid(): boolean {
     return this.authForm.status === 'INVALID';
+  }
+
+  onSubmit(): void {
+    this.resultLogin = this.loginPageService.checkLogin(this.authForm.value);
+    this.resultLogin.subscribe(response => {
+      if (response) {
+        localStorage.setItem('user', response);
+        this.errorHandler = false;
+      } else {
+        this.errorHandler = true;
+      }
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.resultLogin.unsubscribe();
   }
 
 }
