@@ -1,14 +1,22 @@
 import { Injectable } from '@angular/core';
-import { CanActivateChild } from '@angular/router';
+import { CanActivateChild, Router } from '@angular/router';
 
-import { Observable } from 'rxjs/Observable';
+import { StorageService } from './storage.service';
 
 @Injectable()
 export class AuthGuard implements CanActivateChild {
-
+  constructor(
+    private router: Router,
+    private storageService: StorageService
+  ) {}
 
   canActivateChild() {
-    console.log('AuthGuard#canActivateChild called');
-    return true;
+
+    if (this.storageService.checkLocalStorage()) {
+      return true;
+    }
+
+    this.router.navigate(['/login']);
+    return false;
   }
 }

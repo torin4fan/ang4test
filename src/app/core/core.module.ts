@@ -4,6 +4,7 @@ import { ErrorShowComponent } from './components/error-show/error-show.component
 import { FormControlComponent } from './components/form-control/form-control.component';
 import { AuthGuard } from './services/auth-guard.service';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { StorageService } from './services/storage.service';
 
 
 
@@ -12,7 +13,10 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     CommonModule,
   ],
 
-  providers: [AuthGuard],
+  providers: [
+    AuthGuard,
+    StorageService
+  ],
 
   declarations: [
     ErrorShowComponent,
