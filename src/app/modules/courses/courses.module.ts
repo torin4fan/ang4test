@@ -6,6 +6,7 @@ import { CoursesListComponent } from './courses-list/courses-list.component';
 import { AddEditCourseComponent } from './add-edit-course/add-edit-course.component';
 import { CoursesRoutingModule } from './courses.routing.module';
 import { CoursesLayoutComponent } from './courses-layout/courses-layout.component';
+import { CoursesListService } from './courses-list/courses-list.service';
 
 @NgModule({
   imports: [
@@ -14,7 +15,7 @@ import { CoursesLayoutComponent } from './courses-layout/courses-layout.componen
     CoursesRoutingModule
   ],
 
-  providers: [],
+  providers: [CoursesListService],
 
   declarations: [
     CoursesLayoutComponent,

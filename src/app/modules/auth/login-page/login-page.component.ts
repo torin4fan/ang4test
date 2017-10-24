@@ -25,9 +25,10 @@ export class LoginPageComponent implements OnInit {
   ) {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.authForm = this.loginPageService.createForm();
     this.errorHandler = false;
+    this.checkAuth();
   }
 
   checkStatusValid(): boolean {
@@ -36,6 +37,7 @@ export class LoginPageComponent implements OnInit {
 
   onSubmit(): void {
     this.resultLogin = this.loginPageService.checkLogin(this.authForm.value);
+
     this.resultLogin.subscribe(
       response => {
         if (!response) {
@@ -52,6 +54,12 @@ export class LoginPageComponent implements OnInit {
         // this.alertService.error(error);
       }
     );
+  }
+
+  checkAuth(): void {
+    if (this.storageService.checkLocalStorage()){
+      this.router.navigateByUrl('/');
+    }
   }
 
 }

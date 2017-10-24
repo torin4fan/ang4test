@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpModule }    from '@angular/http';
 
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
@@ -30,7 +31,7 @@ import { AppRoutingModule } from './app.routing.module';
     }),
     StoreDevtoolsModule.instrument(),
     AppRoutingModule,
-
+    HttpModule
   ],
   providers: [],
   bootstrap: [AppComponent]

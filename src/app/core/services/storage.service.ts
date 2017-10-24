@@ -12,6 +12,12 @@ export class StorageService {
     }
   }
 
+  clearData(key: string): void {
+    if (window.localStorage) {
+      localStorage.removeItem(key);
+    }
+  }
+
   checkLocalStorage(): boolean {
     return (localStorage.getItem('user') === 'q');
   }

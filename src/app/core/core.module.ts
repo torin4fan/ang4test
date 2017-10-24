@@ -5,6 +5,7 @@ import { FormControlComponent } from './components/form-control/form-control.com
 import { AuthGuard } from './services/auth-guard.service';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { StorageService } from './services/storage.service';
+import { HttpService } from './services/http.service';
 
 
 
@@ -15,7 +16,8 @@ import { StorageService } from './services/storage.service';
 
   providers: [
     AuthGuard,
-    StorageService
+    StorageService,
+    HttpService
   ],
 
   declarations: [
