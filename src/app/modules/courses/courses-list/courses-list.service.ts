@@ -10,8 +10,7 @@ export class CoursesListService {
   }
 
   getCourses(): Observable<any> {
-    return this.httpService
-      .get('http://localhost:3000/courses');
+    return this.httpService.get('http://localhost:3000/courses');
   }
 
 }

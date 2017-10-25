@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { StorageService } from '../../../core/services/storage.service';
+import { CoursesLayoutService } from './courses-layout.service';
 
 @Component({
   selector: 'tr-courses-layout',
@@ -9,10 +10,12 @@ import { StorageService } from '../../../core/services/storage.service';
 })
 export class CoursesLayoutComponent implements OnInit {
 
-  constructor(
-    private storageService: StorageService,
-    private router: Router
-  ) { }
+  searchInput: string;
+
+  constructor(private storageService: StorageService,
+              private coursesLayoutService: CoursesLayoutService,
+              private router: Router) {
+  }
 
   ngOnInit() {
   }
@@ -20,6 +23,10 @@ export class CoursesLayoutComponent implements OnInit {
   logOut(): void {
     this.storageService.clearData('user');
     this.router.navigate(['/login']);
+  }
+
+  filterCourses(): void {
+    this.coursesLayoutService.filterCoursesData(this.searchInput);
   }
 
 }

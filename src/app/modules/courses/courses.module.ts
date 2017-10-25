@@ -7,6 +7,9 @@ import { AddEditCourseComponent } from './add-edit-course/add-edit-course.compon
 import { CoursesRoutingModule } from './courses.routing.module';
 import { CoursesLayoutComponent } from './courses-layout/courses-layout.component';
 import { CoursesListService } from './courses-list/courses-list.service';
+import { CoursesLayoutService } from './courses-layout/courses-layout.service';
+
+import { FilterPipe } from '../../core/pipes/filter.pipe';
 
 @NgModule({
   imports: [
@@ -15,12 +18,16 @@ import { CoursesListService } from './courses-list/courses-list.service';
     CoursesRoutingModule
   ],
 
-  providers: [CoursesListService],
+  providers: [
+    CoursesListService,
+    CoursesLayoutService
+  ],
 
   declarations: [
     CoursesLayoutComponent,
     CoursesListComponent,
-    AddEditCourseComponent
+    AddEditCourseComponent,
+    FilterPipe
   ],
 })
 export class CoursesModule {

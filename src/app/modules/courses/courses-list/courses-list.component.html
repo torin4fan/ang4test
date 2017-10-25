@@ -1,4 +1,4 @@
-<article class="row course-list" *ngFor="let course of courses$ | async">
+<article class="row course-list" *ngFor="let course of courses$ | async | filter: filterCourse">
   <div class="col-md-10">
     <div class="course-list__info">
       <span class="course-list__title">{{course.name}}</span>

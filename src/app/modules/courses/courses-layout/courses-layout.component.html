@@ -16,9 +16,14 @@
         <form class="form-inline">
           <div class="form-group mx-sm-4">
             <label for="search" class="sr-only">Find</label>
-            <input type="text" class="form-control" id="search" placeholder="Search course">
+            <input [(ngModel)]="searchInput"
+                   name="searchInput"
+                   type="text"
+                   class="form-control"
+                   id="search"
+                   placeholder="Search course">
           </div>
-          <button type="submit" class="btn btn-primary">Find course</button>
+          <button type="submit" class="btn btn-primary" (click)="filterCourses()">Find course</button>
         </form>
       </div>
 
