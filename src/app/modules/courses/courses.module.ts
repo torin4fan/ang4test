@@ -10,6 +10,7 @@ import { CoursesListService } from './courses-list/courses-list.service';
 import { CoursesLayoutService } from './courses-layout/courses-layout.service';
 
 import { FilterPipe } from '../../core/pipes/filter.pipe';
+import { CoursesFilterComponent } from './courses-filter/courses-filter.component';
 
 @NgModule({
   imports: [
@@ -27,6 +28,7 @@ import { FilterPipe } from '../../core/pipes/filter.pipe';
     CoursesLayoutComponent,
     CoursesListComponent,
     AddEditCourseComponent,
+    CoursesFilterComponent,
     FilterPipe
   ],
 })

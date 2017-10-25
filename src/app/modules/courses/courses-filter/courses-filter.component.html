@@ -1,0 +1,20 @@
+<section class="tools row">
+  <div class="col-md-10">
+    <form class="form-inline">
+      <div class="form-group mx-sm-4">
+        <label for="search" class="sr-only">Find</label>
+        <input [(ngModel)]="searchInput"
+               name="searchInput"
+               type="text"
+               class="form-control"
+               id="search"
+               placeholder="Search course">
+      </div>
+      <button type="submit" class="btn btn-primary" (click)="filterCourses()">Find course</button>
+    </form>
+  </div>
+
+  <div class="col-md-2">
+    <a href="#" class="btn btn-info float-right">Add course</a>
+  </div>
+</section>
