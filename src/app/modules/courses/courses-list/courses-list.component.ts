@@ -8,7 +8,7 @@ import { CoursesLayoutService } from '../courses-layout/courses-layout.service';
   styleUrls: ['./courses-list.component.scss']
 })
 export class CoursesListComponent implements OnInit {
-  courses$;
+  courses;
   filterCourse: string;
 
   constructor(private coursesListService: CoursesListService,
@@ -16,12 +16,21 @@ export class CoursesListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.courses$ = this.coursesListService.getCourses();
+    this.courses = this.coursesListService.getCourses().subscribe(
+      response => {
+         this.courses = response;
+      }
+    );
+
     this.coursesLayoutService._data.subscribe(
       response => {
         this.filterCourse = response;
       }
     );
+  }
+
+  removeCourse(courseId: number) {
+    this.courses = this.courses.filter((data: any) => data.id !== courseId);
   }
 
 }
