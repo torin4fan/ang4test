@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 
-import {Post} from './models/post.model';
+import { StorageModel } from './models/storage.model';
 import * as PostActions from './actions/post.action';
 
 interface AppState {
@@ -10,7 +10,7 @@ interface AppState {
 }
 
 interface App2State {
-  post: Post;
+  post: StorageModel;
 }
 
 @Component({
@@ -20,7 +20,7 @@ interface App2State {
 })
 export class AppComponent {
   message$: Observable<string>;
-  post: Observable<Post>;
+  post: Observable<StorageModel>;
   text: string; // form input val
   title = 'app';
 

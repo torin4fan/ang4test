@@ -1,28 +1,27 @@
-import * as PostActions from '../actions/post.action';
-import { StorageModel } from '../models/storage.model';
+import * as CoursesAction from '../actions/courses.action';
 
-export type Action = PostActions.All;
+import { StorageModel } from '../models/storage.model';
+import { AppModel } from '../models/app.model';
+
+export type Action = CoursesAction.All;
 
 // Default app state
-const defaultState: StorageModel = {
-  courses: [],
-  text: 'Hello. Im the default post',
-  likes: 0
+const defaultState: AppModel = {
+  courses: []
 };
-
-
 
 // Helper function to create new state object
 const newState = (state, newData) => {
   return Object.assign({}, state, newData);
 };
 
-// Reducer function
-export function postReducer(state: StorageModel = defaultState, action: Action) {
-  console.log(action.type, state);
+export function coursesReducer(state: AppModel = defaultState, action: Action) {
+  console.log(action.type, state, 'courses');
 
   switch (action.type) {
-    case PostActions.EDIT_TEXT:
+    case CoursesAction.GET_COURSES:
+      return newState(state, {courses: action.courses});
+    /*case PostActions.EDIT_TEXT:
       return newState(state, {text: action.payload});
 
     case PostActions.UPVOTE:
@@ -33,9 +32,10 @@ export function postReducer(state: StorageModel = defaultState, action: Action) 
 
     case PostActions.RESET:
       return defaultState;
-
+*/
     default:
       return state;
   }
 }
+
 
