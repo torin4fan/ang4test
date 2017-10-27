@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 
-import { Observable } from 'rxjs/Observable';
 import * as CoursesActions from '../../../actions/courses.action';
 import { HttpService } from '../../../core/services/http.service';
 import { Store } from '@ngrx/store';

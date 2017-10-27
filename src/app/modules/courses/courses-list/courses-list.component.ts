@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
+import 'rxjs/add/operator/takeUntil';
 
 import { CoursesListService } from './courses-list.service';
-import { CoursesLayoutService } from '../courses-layout/courses-layout.service';
 import { AppModel } from '../../../models/app.model';
 import { CourseModel } from '../../../models/course.model';
-
 
 
 @Component({
@@ -15,39 +15,34 @@ import { CourseModel } from '../../../models/course.model';
   templateUrl: './courses-list.component.html',
   styleUrls: ['./courses-list.component.scss']
 })
-export class CoursesListComponent implements OnInit {
-  filterCourse: string;
+export class CoursesListComponent implements OnInit, OnDestroy {
   courses$: Observable<AppModel | any>;
   courses: CourseModel;
+  private ngUnsubscribe: Subject<void> = new Subject<void>();
 
   constructor(private coursesListService: CoursesListService,
-              private coursesLayoutService: CoursesLayoutService,
               private store: Store<AppModel>) {
 
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.courses$ = this.store.select('courses');
-    console.log(this.courses$);
     this.coursesListService.getCourses();
-    console.log(this.courses$);
-
-    this.courses$.subscribe(
-      response => {
-        this.courses = response.courses;
-        console.log(this.courses);
-      }
-    );
-
-    this.coursesLayoutService._data.subscribe(
-      response => {
-        this.filterCourse = response;
-      }
-    );
+    this.getData();
   }
 
-  /*removeCourse(courseId: number) {
-    this.courses = this.courses.filter((data: any) => data.id !== courseId);
-  }*/
+  private getData(): void {
+    this.courses$
+      .takeUntil(this.ngUnsubscribe)
+      .subscribe(
+        response => {
+          this.courses = (response.filter.length) ? response.filter : response.courses;
+        }
+      );
+  }
 
+  ngOnDestroy(): void {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
+  }
 }

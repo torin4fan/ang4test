@@ -7,9 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
 
-import { simpleReducer } from './_reducers/simple.reduser';
-import { postReducer } from './_reducers/post.reducer';
-import { coursesReducer } from './_reducers/courses.reducer';
+import { coursesReducer } from './reducers/courses.reducer';
 
 import { AppComponent } from './app.component';
 
@@ -31,8 +29,6 @@ import { AppRoutingModule } from './app.routing.module';
     BrowserModule,
     FormsModule,
     StoreModule.forRoot({
-      post: postReducer,
-      message: simpleReducer,
       courses: coursesReducer
     }),
     StoreDevtoolsModule.instrument(),

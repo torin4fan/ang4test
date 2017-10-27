@@ -7,7 +7,6 @@ import { AddEditCourseComponent } from './add-edit-course/add-edit-course.compon
 import { CoursesRoutingModule } from './courses.routing.module';
 import { CoursesLayoutComponent } from './courses-layout/courses-layout.component';
 import { CoursesListService } from './courses-list/courses-list.service';
-import { CoursesLayoutService } from './courses-layout/courses-layout.service';
 
 import { FilterPipe } from '../../core/pipes/filter.pipe';
 import { CoursesFilterComponent } from './courses-filter/courses-filter.component';
@@ -20,8 +19,7 @@ import { CoursesFilterComponent } from './courses-filter/courses-filter.componen
   ],
 
   providers: [
-    CoursesListService,
-    CoursesLayoutService
+    CoursesListService
   ],
 
   declarations: [
