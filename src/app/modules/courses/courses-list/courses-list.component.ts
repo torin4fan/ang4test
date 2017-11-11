@@ -17,7 +17,7 @@ import { CourseModel } from '../../../models/course.model';
 })
 export class CoursesListComponent implements OnInit, OnDestroy {
   courses$: Observable<AppModel | any>;
-  courses: CourseModel;
+  courses: CourseModel[];
   private ngUnsubscribe: Subject<void> = new Subject<void>();
 
   constructor(private coursesListService: CoursesListService,
@@ -39,6 +39,14 @@ export class CoursesListComponent implements OnInit, OnDestroy {
           this.courses = (response.filter.length) ? response.filter : response.courses;
         }
       );
+  }
+
+  removeCourse(courseId: number): void {
+    const confirmRemove = confirm('This item will be deleted, agree?');
+
+    if (confirmRemove) {
+      this.coursesListService.removeCourse(courseId, this.courses);
+    }
   }
 
   ngOnDestroy(): void {

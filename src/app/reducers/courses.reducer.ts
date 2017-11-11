@@ -20,6 +20,8 @@ export function coursesReducer(state: AppModel = defaultState, action: Action) {
       return newState(state, {courses: action.courses});
     case CoursesAction.FILTER_COURSE:
       return newState(state, {filter: action.filterCourses});
+    case CoursesAction.DELETE_COURSE:
+      return newState(state, {courses: action.courses});
     default:
       return state;
   }

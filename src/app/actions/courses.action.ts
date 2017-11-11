@@ -26,7 +26,7 @@ export class EditCourse implements Action {
 export class DeleteCourse implements Action {
   readonly type = DELETE_COURSE;
 
-  constructor(public course: CourseModel) {
+  constructor(public courses: CourseModel[]) {
   }
 }
 

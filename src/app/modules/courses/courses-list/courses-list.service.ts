@@ -4,6 +4,7 @@ import * as CoursesActions from '../../../actions/courses.action';
 import { HttpService } from '../../../core/services/http.service';
 import { Store } from '@ngrx/store';
 import { AppModel } from '../../../models/app.model';
+import { CourseModel } from '../../../models/course.model';
 
 @Injectable()
 export class CoursesListService {
@@ -18,6 +19,11 @@ export class CoursesListService {
         this.store.dispatch(new CoursesActions.GetCourses(response));
       }
     );
+  }
+
+  removeCourse(courseId: number, courses: CourseModel[]): void {
+    const truncatedCourses: CourseModel[] = courses.filter(response => response.id !== courseId);
+    this.store.dispatch(new CoursesActions.DeleteCourse(truncatedCourses));
   }
 
 }
