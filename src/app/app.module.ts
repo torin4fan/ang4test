@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { HttpModule } from '@angular/http';
 
 import { FormsModule } from '@angular/forms';
 
@@ -19,25 +18,24 @@ import { AppRoutingModule } from './app.routing.module';
 
 
 
-
 @NgModule({
   declarations: [
     AppComponent,
   ],
   imports: [
-    AuthModule,
-    CoursesModule,
+    HttpClientModule,
     BrowserModule,
     FormsModule,
-    HttpModule,
     StoreModule.forRoot({
       courses: coursesReducer
     }),
     StoreDevtoolsModule.instrument(),
     AppRoutingModule,
-    HttpClientModule
+    AuthModule,
+    CoursesModule,
   ],
-  providers: [],
+  providers: [
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

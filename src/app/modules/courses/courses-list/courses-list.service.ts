@@ -5,17 +5,18 @@ import { HttpService } from '../../../core/services/http.service';
 import { Store } from '@ngrx/store';
 import { AppModel } from '../../../models/app.model';
 import { CourseModel } from '../../../models/course.model';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 
 @Injectable()
 export class CoursesListService {
 
-  constructor(private httpService: HttpService,
+  constructor(private http: HttpClient,
               private store: Store<AppModel>) {
   }
 
   getCourses(): void {
-    this.httpService.get('http://localhost:3000/courses').subscribe(
-      response => {
+    this.http.get('http://localhost:3000/courses').subscribe(
+      (response) => {
         this.store.dispatch(new CoursesActions.GetCourses(response));
       }
     );

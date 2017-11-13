@@ -1,11 +1,16 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
+
 import { ErrorShowComponent } from './components/error-show/error-show.component';
 import { FormControlComponent } from './components/form-control/form-control.component';
-import { AuthGuard } from './services/auth-guard.service';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+
 import { StorageService } from './services/storage.service';
 import { HttpService } from './services/http.service';
+import { AuthGuard } from './services/auth-guard.service';
+import { HttpInterceptorService } from './services/http-interceptor.service';
+import { RtHttpClient } from './services/rt-http-client.service';
 
 
 
@@ -17,7 +22,13 @@ import { HttpService } from './services/http.service';
   providers: [
     AuthGuard,
     StorageService,
-    HttpService
+    HttpService,
+    { provide: HttpClient, useClass: RtHttpClient },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpInterceptorService,
+      multi: true
+    },
   ],
 
   declarations: [

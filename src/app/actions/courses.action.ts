@@ -12,7 +12,7 @@ export const FILTER_COURSE = 'Filter course';
 export class GetCourses implements Action {
   readonly type = GET_COURSES;
 
-  constructor(public courses: CourseModel[]) {
+  constructor(public courses: any) {
   }
 }
 

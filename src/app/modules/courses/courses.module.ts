@@ -10,10 +10,12 @@ import { CoursesListService } from './courses-list/courses-list.service';
 
 import { FilterPipe } from '../../core/pipes/filter.pipe';
 import { CoursesFilterComponent } from './courses-filter/courses-filter.component';
+import { CoreModule } from '../../core/core.module';
 
 @NgModule({
   imports: [
     CommonModule,
+    CoreModule,
     FormsModule,
     CoursesRoutingModule
   ],
