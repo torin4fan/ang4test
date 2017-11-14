@@ -10,14 +10,11 @@ export class AddEditCourseService {
 
   createForm(): FormGroup {
     return this.fb.group({
-      loginUser: ['', [
-        Validators.required,
-      ]
-      ],
-      passwordUser: ['', [
-        Validators.required,
-      ]
-      ],
+      title: ['', Validators.required],
+      description: ['', Validators.required],
+      date: ['', Validators.required],
+      duration: ['', Validators.required],
+      authors: ['', Validators.required]
     });
   }
 
