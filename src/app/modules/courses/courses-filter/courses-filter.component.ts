@@ -28,9 +28,9 @@ export class CoursesFilterComponent implements OnInit, OnDestroy {
       .takeUntil(this.ngUnsubscribe)
       .subscribe(
       response => {
-         this.filterResult = response.courses.filter(item => {
-           return !!this.searchInput
-             ? item.name.indexOf(this.searchInput) !== -1
+        this.filterResult = response.courses.filter(item => {
+          return !!this.searchInput
+             ? item.title.indexOf(this.searchInput) !== -1
              : '';
          });
       }

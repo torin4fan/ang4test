@@ -17,6 +17,10 @@ const routes: Routes = [
         component: CoursesListComponent
       },
       {
+        path: ':id',
+        component: AddEditCourseComponent
+      },
+      {
         path: 'new',
         component: AddEditCourseComponent
       },

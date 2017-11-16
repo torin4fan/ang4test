@@ -4,7 +4,7 @@
   <article class="row course-list" *ngFor="let course of courses">
     <div class="col-md-10">
       <div class="course-list__info">
-        <span class="course-list__title">{{course.name}}</span>
+        <span class="course-list__title">{{course.title}}</span>
         <span class="course-list__time">{{course.duration}}</span>
         <span class="course-list__date">{{course.date}}</span>
       </div>
@@ -13,7 +13,7 @@
 
 
     <div class="col-md-2 course-list__addition">
-      <a href="#" class="btn btn-secondary btn-sm course-list__edit">Edit</a>
+      <a [routerLink]="['/', course.id]" class="btn btn-secondary btn-sm course-list__edit">Edit</a>
       <button class="btn btn-danger btn-sm course-list__delete" (click)="removeCourse(course.id)">Delete</button>
     </div>
   </article>

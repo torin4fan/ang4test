@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 
 import * as CoursesActions from '../../../actions/courses.action';
-import { HttpService } from '../../../core/services/http.service';
 import { Store } from '@ngrx/store';
 import { AppModel } from '../../../models/app.model';
 import { CourseModel } from '../../../models/course.model';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class CoursesListService {

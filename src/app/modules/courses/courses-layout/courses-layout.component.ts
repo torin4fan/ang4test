@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { StorageService } from '../../../core/services/storage.service';
+import { CoursesListService } from '../courses-list/courses-list.service';
 
 @Component({
   selector: 'tr-courses-layout',
@@ -9,11 +10,15 @@ import { StorageService } from '../../../core/services/storage.service';
 })
 export class CoursesLayoutComponent implements OnInit {
 
-  constructor(private storageService: StorageService,
-              private router: Router) {
+  constructor(
+    private storageService: StorageService,
+    private router: Router,
+    private coursesListService: CoursesListService
+  ) {
   }
 
   ngOnInit() {
+    this.coursesListService.getCourses();
   }
 
   logOut(): void {

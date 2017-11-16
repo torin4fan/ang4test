@@ -20,14 +20,15 @@ export class CoursesListComponent implements OnInit, OnDestroy {
   courses: CourseModel[];
   private ngUnsubscribe: Subject<void> = new Subject<void>();
 
-  constructor(private coursesListService: CoursesListService,
-              private store: Store<AppModel>) {
+  constructor(
+    private coursesListService: CoursesListService,
+    private store: Store<AppModel>
+  ) {
 
   }
 
   ngOnInit(): void {
     this.courses$ = this.store.select('courses');
-    this.coursesListService.getCourses();
     this.getData();
   }
 
