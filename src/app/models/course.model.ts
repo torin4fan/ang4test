@@ -1,5 +1,5 @@
 export interface CourseModel {
-  date: number;
+  date: string;
   description: string;
   duration: number;
   id: number;

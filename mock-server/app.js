@@ -11,7 +11,9 @@ app.get('/courses', function (req, res) {
   if(req.query.id) {
     result = courses.filter(function (response) {
       return response.id === +req.query.id;
-    })
+    });
+
+    result = result[0];
   }
 
   res.json(result || courses);

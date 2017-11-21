@@ -3,7 +3,6 @@ import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
 import { AddEditCourseService } from './add-edit-course.service';
-import { CourseModel } from '../../../models/course.model';
 
 @Component({
   selector: 'tr-add-edit-course',
@@ -13,11 +12,11 @@ import { CourseModel } from '../../../models/course.model';
 export class AddEditCourseComponent implements OnInit {
   courseForm: FormGroup;
   defaultAuthors: Array<string>;
-  CourseResponse: CourseModel;
+  private id: number;
 
   constructor(
     private addEditCourseService: AddEditCourseService,
-    private route: ActivatedRoute,
+    private route: ActivatedRoute
     ) {
     this.defaultAuthors = [
       'Smith',
@@ -29,42 +28,23 @@ export class AddEditCourseComponent implements OnInit {
 
   ngOnInit() {
     this.courseForm = this.addEditCourseService.createForm();
-    this.getCourse();
-  }
+    this.id = +this.route.snapshot.paramMap.get('id');
 
-  getCourse(): void {
-    const id: number = +this.route.snapshot.paramMap.get('id');
-    let result: any;
-
-    if (id) {
-      result = this.addEditCourseService.getCourse(id);
-      result.subscribe(response => {
-        console.log(response);
-      });
+    if (this.id) {
+      this.getCourse(this.id);
     }
   }
 
-  onSubmit(): void {
-    this.addEditCourseService.addEditCourse(this.courseForm.value);
+  getCourse(pageId: number): void {
+    let result: any;
+
+    result = this.addEditCourseService.getCourse(pageId);
+    result.subscribe(response => {
+      this.courseForm.reset(response);
+    });
   }
-    /*this.resultLogin = this.loginPageService.checkLogin(this.authForm.value);
 
-    this.resultLogin.subscribe(
-      response => {
-        if (!response) {
-          this.errorHandler = true;
-          return false;
-        }
-
-        this.storageService.setData('user', response);
-        this.errorHandler = false;
-        this.router.navigateByUrl('/');
-      },
-      error => {
-        // login failed so display error
-        // this.alertService.error(error);
-      }
-    );
-  }*/
-
+  onSubmit(): void {
+    this.addEditCourseService.addEditCourse(this.courseForm.value, this.id);
+  }
 }

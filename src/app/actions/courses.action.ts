@@ -39,6 +39,9 @@ export class FilterCourse implements Action {
 
 export class AddCourse implements Action {
   readonly type = ADD_COURSE;
+
+  constructor(public course: CourseModel) {
+  }
 }
 
 export type All
