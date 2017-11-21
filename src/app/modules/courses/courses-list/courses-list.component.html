@@ -13,7 +13,7 @@
 
 
     <div class="col-md-2 course-list__addition">
-      <a [routerLink]="['/', course.id]" class="btn btn-secondary btn-sm course-list__edit">Edit</a>
+      <a [routerLink]="['/courses', course.id]" class="btn btn-secondary btn-sm course-list__edit">Edit</a>
       <button class="btn btn-danger btn-sm course-list__delete" (click)="removeCourse(course.id)">Delete</button>
     </div>
   </article>
