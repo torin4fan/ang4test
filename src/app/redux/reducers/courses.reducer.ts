@@ -1,5 +1,5 @@
 import * as CoursesAction from '../actions/courses.action';
-import { AppModel } from '../models/app.model';
+import { AppModel } from '../../core/models/app.model';
 
 export type Action = CoursesAction.All;
 

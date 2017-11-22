@@ -6,7 +6,7 @@
       <div class="course-list__info">
         <span class="course-list__title">{{course.title}}</span>
         <span class="course-list__time">{{course.duration}}</span>
-        <span class="course-list__date">{{course.date}}</span>
+        <span class="course-list__date">{{course.date | date:"MM/dd/yy"}}</span>
       </div>
       <p>{{course.description}}</p>
     </div>

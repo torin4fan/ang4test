@@ -7,7 +7,6 @@ import { FormControlComponent } from './components/form-control/form-control.com
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 import { StorageService } from './services/storage.service';
-import { HttpService } from './services/http.service';
 import { AuthGuard } from './services/auth-guard.service';
 import { HttpInterceptorService } from './services/http-interceptor.service';
 import { RtHttpClient } from './services/rt-http-client.service';
@@ -22,7 +21,6 @@ import { RtHttpClient } from './services/rt-http-client.service';
   providers: [
     AuthGuard,
     StorageService,
-    HttpService,
     { provide: HttpClient, useClass: RtHttpClient },
     {
       provide: HTTP_INTERCEPTORS,

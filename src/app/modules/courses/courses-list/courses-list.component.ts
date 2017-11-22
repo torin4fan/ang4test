@@ -6,8 +6,8 @@ import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/takeUntil';
 
 import { CoursesListService } from './courses-list.service';
-import { AppModel } from '../../../models/app.model';
-import { CourseModel } from '../../../models/course.model';
+import { AppModel } from '../../../core/models/app.model';
+import { CourseModel } from '../../../core/models/course.model';
 
 
 @Component({

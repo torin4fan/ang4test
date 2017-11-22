@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
 
-import { coursesReducer } from './reducers/courses.reducer';
+import { coursesReducer } from './redux/reducers/courses.reducer';
 
 import { AppComponent } from './app.component';
 

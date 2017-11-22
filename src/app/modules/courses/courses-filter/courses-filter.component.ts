@@ -2,9 +2,9 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subject } from 'rxjs/Subject';
 
-import { AppModel } from '../../../models/app.model';
-import * as CoursesActions from '../../../actions/courses.action';
-import { CourseModel } from '../../../models/course.model';
+import { AppModel } from '../../../core/models/app.model';
+import * as CoursesActions from '../../../redux/actions/courses.action';
+import { CourseModel } from '../../../core/models/course.model';
 
 @Component({
   selector: 'tr-courses-filter',

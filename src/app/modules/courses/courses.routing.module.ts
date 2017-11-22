@@ -14,15 +14,18 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: CoursesListComponent
+        component: CoursesListComponent,
+        data: { breadcrumb: 'courses' },
       },
       {
         path: ':id',
-        component: AddEditCourseComponent
+        component: AddEditCourseComponent,
+        data: { breadcrumb: 'id' },
       },
       {
         path: 'new',
-        component: AddEditCourseComponent
+        component: AddEditCourseComponent,
+        data: { breadcrumb: 'courses' },
       },
     ]
   }

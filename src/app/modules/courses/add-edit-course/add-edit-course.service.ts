@@ -6,9 +6,10 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
 
-import { CourseModel } from '../../../models/course.model';
-import { AppModel } from '../../../models/app.model';
-import * as CoursesActions from '../../../actions/courses.action';
+import { CourseModel } from '../../../core/models/course.model';
+import { AppModel } from '../../../core/models/app.model';
+import * as CoursesActions from '../../../redux/actions/courses.action';
+import { RoutingConstant } from '../../../core/constants/routing.constant';
 
 @Injectable()
 export class AddEditCourseService {
@@ -40,7 +41,7 @@ export class AddEditCourseService {
   }
 
   getCourse(id: number): Observable<any> {
-    return this.http.get('http://localhost:3000/courses?id=' + id);
+    return this.http.get(RoutingConstant.courses + '?id=' + id);
   }
 
   addEditCourse(courseValue: CourseModel, pageId: number): any {

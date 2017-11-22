@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { CourseModel } from '../models/course.model';
+import { CourseModel } from '../../core/models/course.model';
 
 
 export const GET_COURSES = 'Get courses';
