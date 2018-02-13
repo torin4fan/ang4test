@@ -4,6 +4,7 @@
 /dist
 /tmp
 /out-tsc
+mock-server/config/db.js
 
 # dependencies
 /node_modules
