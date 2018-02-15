@@ -5,7 +5,7 @@ module.exports = function(app, db) {
     const id = req.params.id;
     const details = { '_id': new ObjectID(id) };
 
-    db.collection('notes').findOne(details, (err, item) => {
+    db.collection('list').findOne(details, (err, item) => {
       if (err) {
         res.send({'error':'An error has occurred'});
       } else {
@@ -13,6 +13,16 @@ module.exports = function(app, db) {
       }
     });
   });
+
+
+  app.get('/notes', (req, res) => {
+    db.collection('list').find({}).toArray((error, list) => {
+      if (error) throw error;
+      res.send(list);
+    });
+
+  });
+
 
   app.delete('/notes/:id', (req, res) => {
     const id = req.params.id;
