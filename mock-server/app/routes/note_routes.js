@@ -1,62 +1,65 @@
 let ObjectID = require('mongodb').ObjectID;
 
-module.exports = function(app, db) {
-  app.get('/notes/:id', (req, res) => {
-    const id = req.params.id;
-    const details = { '_id': new ObjectID(id) };
-
-    db.collection('list').findOne(details, (err, item) => {
-      if (err) {
-        res.send({'error':'An error has occurred'});
-      } else {
-        res.send(item);
-      }
-    });
-  });
-
-
-  app.get('/notes', (req, res) => {
-    db.collection('list').find({}).toArray((error, list) => {
-      if (error) throw error;
-      res.send(list);
-    });
-
-  });
-
-
-  app.delete('/notes/:id', (req, res) => {
-    const id = req.params.id;
-    const details = { '_id': new ObjectID(id) };
-    db.collection('notes').remove(details, (err, item) => {
-      if (err) {
-        res.send({'error':'An error has occurred'});
-      } else {
-        res.send('Note ' + id + ' deleted!');
-      }
-    });
-  });
-
-  app.put ('/notes/:id', (req, res) => {
-    const id = req.params.id;
-    const details = { '_id': new ObjectID(id) };
-    const note = { text: req.body.body, title: req.body.title };
-    db.collection('notes').update(details, note, (err, result) => {
-      if (err) {
-        res.send({'error':'An error has occurred'});
-      } else {
-        res.send(note);
-      }
-    });
-  });
-
-  app.post('/notes', (req, res) => {
-    const note = { text: req.body.body, title: req.body.title };
-      db.collection('notes').insert(note, (err, result) => {
-        if (err) {
-          res.send({ 'error': 'An error has occurred' });
-        } else {
-          res.send(result.ops[0]);
-        }
-      });
-  });
+module.exports = function (router, db) {
+    
+    router.route('/courses')
+        .get((req, res) => {
+            try {
+                (async function () {
+                    const allCourses = await db.collection('list').find({}).toArray();
+                    res.send(allCourses);
+                })();
+            } catch (err) {
+                console.log(err.stack);
+            }
+        })
+        .post((req, res) => {
+            try {
+                (async function () {
+                    const allCourses = await db.collection('list').insertOne(req.body);
+                    res.send({"message": allCourses.insertedCount});
+                })();
+            } catch (err) {
+                console.log(err.stack);
+            }
+        });
+    
+    
+    router.route('/courses/:id')
+        .get((req, res) => {
+            const id = req.params.id;
+            const courseId = {'_id': new ObjectID(id)};
+            
+            try {
+                db.collection('list').findOne(courseId, (err, item) => {
+                    res.send(item);
+                });
+            } catch (err) {
+                console.log(err.stack);
+            }
+        })
+        .delete((req, res) => {
+            const id = req.params.id;
+            const courseId = {'_id': new ObjectID(id)};
+            
+            try {
+                db.collection('list').deleteOne(courseId, (err, item) => {
+                    res.send(item);
+                });
+            } catch (err) {
+                console.log(err.stack);
+            }
+        })
+        .put((req, res) => {
+            const id = req.params.id;
+            const courseId = {'_id': new ObjectID(id)};
+            
+            try {
+                db.collection('list').updateOne(courseId, {$set: req.body}, (err, item) => {
+                    res.send(item);
+                });
+            } catch (err) {
+                console.log(err.stack);
+            }
+        });
 };

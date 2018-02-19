@@ -7,36 +7,36 @@ import { CoursesLayoutComponent } from './courses-layout/courses-layout.componen
 import { AuthGuard } from '../../core/services/auth-guard.service';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: CoursesLayoutComponent,
-    canActivateChild: [AuthGuard],
-    children: [
-      {
+    {
         path: '',
-        component: CoursesListComponent,
-        data: { breadcrumb: 'courses' },
-      },
-      {
-        path: ':id',
-        component: AddEditCourseComponent,
-        data: { breadcrumb: 'id' },
-      },
-      {
-        path: 'new',
-        component: AddEditCourseComponent,
-        data: { breadcrumb: 'courses' },
-      },
-    ]
-  }
+        component: CoursesLayoutComponent,
+        canActivateChild: [AuthGuard],
+        children: [
+            {
+                path: '',
+                component: CoursesListComponent,
+                data: {breadcrumb: 'courses'},
+            },
+            {
+                path: 'new',
+                component: AddEditCourseComponent,
+                data: {breadcrumb: 'courses'},
+            },
+            {
+                path: ':id',
+                component: AddEditCourseComponent,
+                data: {breadcrumb: 'id'},
+            },
+        ]
+    }
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forChild(routes)
-  ],
-  exports: [RouterModule],
-  providers: []
+    imports: [
+        RouterModule.forChild(routes)
+    ],
+    exports: [RouterModule],
+    providers: []
 })
 export class CoursesRoutingModule {
 }

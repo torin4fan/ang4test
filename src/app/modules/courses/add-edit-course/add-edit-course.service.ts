@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
@@ -13,45 +13,44 @@ import { RoutingConstant } from '../../../core/constants/routing.constant';
 
 @Injectable()
 export class AddEditCourseService {
-  courses$: Observable<AppModel | any>;
+    courses$: Observable<AppModel | any>;
 
-  private static idGenerator() {
-    const d = new Date();
-    return d.getTime();
-  }
-
-  constructor(
-    private fb: FormBuilder,
-    private http: HttpClient,
-    private store: Store<AppModel>,
-    private router: Router,
-  ) {
-    this.courses$ = this.store.select('courses');
-  }
-
-  createForm(): FormGroup {
-    return this.fb.group({
-      id: [''],
-      title: ['', Validators.required],
-      description: ['', Validators.required],
-      date: ['', Validators.required],
-      duration: ['', Validators.required],
-      authors: ['', Validators.required]
-    });
-  }
-
-  getCourse(id: number): Observable<any> {
-    return this.http.get(RoutingConstant.courses + '?id=' + id);
-  }
-
-  addEditCourse(courseValue: CourseModel, pageId: number): any {
-    if (isNaN(pageId)) {
-      courseValue.id = AddEditCourseService.idGenerator();
-      this.store.dispatch(new CoursesActions.AddCourse(courseValue));
-    } else {
-      this.store.dispatch(new CoursesActions.EditCourse(courseValue));
+    constructor(private fb: FormBuilder,
+                private http: HttpClient,
+                private store: Store<AppModel>,
+                private router: Router) {
+        this.courses$ = this.store.select('courses');
     }
 
-    this.router.navigate(['/']);
-  }
+    createForm(): FormGroup {
+        return this.fb.group({
+            title: ['', Validators.required],
+            description: ['', Validators.required],
+            date: ['', Validators.required],
+            duration: ['', Validators.required],
+            authors: ['', Validators.required]
+        });
+    }
+
+    getCourse(id: string): Observable<any> {
+        return this.http.get(RoutingConstant.courses + '/' + id);
+    }
+
+    addEditCourse(courseValue: CourseModel, pageId: string): any {
+        const headers = new HttpHeaders()
+            .set('Authorization', 'my-auth-token')
+            .set('Content-Type', 'application/json');
+
+        if (pageId) {
+            this.store.dispatch(new CoursesActions.AddCourse(courseValue));
+        } else {
+            this.store.dispatch(new CoursesActions.EditCourse(courseValue));
+
+            this.http.post(RoutingConstant.courses, JSON.stringify(courseValue), {headers: headers}).subscribe(resp => {
+                console.log(resp);
+            });
+        }
+
+        // this.router.navigate(['/']);
+    }
 }

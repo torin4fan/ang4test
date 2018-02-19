@@ -27,6 +27,14 @@ export class CoursesListService {
   removeCourse(courseId: number, courses: CourseModel[]): void {
     const truncatedCourses: CourseModel[] = courses.filter(response => response.id !== courseId);
     this.store.dispatch(new CoursesActions.DeleteCourse(truncatedCourses));
+
+      this.http.delete(RoutingConstant.courses + '/' + courseId).subscribe(
+          (response) => {
+              if (response.ok) {
+                  location.reload();
+              }
+          }
+      );
   }
 
 }
