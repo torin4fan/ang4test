@@ -6,20 +6,18 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
 
-import { CourseModel } from '../../../core/models/course.model';
-import { AppModel } from '../../../core/models/app.model';
 import * as CoursesActions from '../../../redux/actions/courses.action';
 import { RoutingConstant } from '../../../core/constants/routing.constant';
 
 @Injectable()
 export class AddEditCourseService {
-    courses$: Observable<AppModel | any>;
+    courses$: Observable<any>;
 
     constructor(private fb: FormBuilder,
                 private http: HttpClient,
-                private store: Store<AppModel>,
+                private store: Store<any>,
                 private router: Router) {
-        this.courses$ = this.store.select('courses');
+        this.courses$ = this.store.select('data');
     }
 
     createForm(): FormGroup {
@@ -36,13 +34,16 @@ export class AddEditCourseService {
         return this.http.get(RoutingConstant.courses + '/' + id);
     }
 
-    addEditCourse(courseValue: CourseModel, pageId: string): any {
+    addEditCourse(courseValue: any, pageId: string): any {
         const headers = new HttpHeaders()
             .set('Authorization', 'my-auth-token')
             .set('Content-Type', 'application/json');
 
         if (pageId) {
             this.store.dispatch(new CoursesActions.AddCourse(courseValue));
+            this.http.put(RoutingConstant.courses + '/' + pageId, JSON.stringify(courseValue), {headers: headers}).subscribe(resp => {
+                console.log(resp);
+            });
         } else {
             this.store.dispatch(new CoursesActions.EditCourse(courseValue));
 

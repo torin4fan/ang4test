@@ -1,7 +1,7 @@
 <tr-courses-filter></tr-courses-filter>
 
-<section *ngIf="courses">
-  <article class="row course-list" *ngFor="let course of courses">
+<section>
+  <article class="row course-list" *ngFor="let course of courses$ | async">
     <div class="col-md-10">
       <div class="course-list__info">
         <span class="course-list__title">{{course.title}}</span>

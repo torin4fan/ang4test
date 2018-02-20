@@ -1,48 +1,57 @@
-import * as CoursesAction from '../actions/courses.action';
-import { AppModel } from '../../core/models/app.model';
+import * as CoursesActions from '../actions/courses.action';
+import { CoursesModel } from '../../core/models/courses.model';
 
-export type Action = CoursesAction.All;
+export type Action = CoursesActions.All;
 
-// Default app state
-const defaultState: AppModel = {
-  courses: [],
-  filter: []
+const defaultState: CoursesModel = {
+    data: [],
+    filter: []
 };
 
-// Helper function to create new state object
+
 const newState = (state, newData) => {
-  return Object.assign({}, state, newData);
+    return Object.assign({}, state, newData);
 };
 
-export function coursesReducer(state: AppModel = defaultState, action: Action) {
-  switch (action.type) {
-    case CoursesAction.GET_COURSES:
-      return newState(state, {courses: action.courses});
+export function coursesReducer(state = defaultState, action: Action): CoursesModel {
+    switch (action.type) {
+        case CoursesActions.GET_COURSES:
+            return {
+                ...state,
+                data: action.courses
+            };
 
-    case CoursesAction.FILTER_COURSE:
-      return newState(state, {filter: action.filterCourses});
+        case CoursesActions.DELETE_COURSE:
+            return {
+                ...state,
+                data: state.data.filter(item => item._id !== action.idCourse),
+                filter: state.filter.filter(item => item._id !== action.idCourse)
+            };
 
-    case CoursesAction.DELETE_COURSE:
-      return newState(state, {courses: action.courses});
+        /*case CoursesAction.FILTER_COURSE:
+		  return newState(state, {filter: action.filterCourses});
 
-    case CoursesAction.ADD_COURSE:
-      return {
-        ...state,
-        courses: state.courses.concat(action.course)
-      };
+		case CoursesAction.DELETE_COURSE:
+		  return newState(state, {courses: action.courses});
 
-    case CoursesAction.EDIT_COURSE:
-      return {
-        ...state,
-        courses: state.courses.map(todo => todo.id === action.course.id ?
-          action.course :
-          todo
-        )
-      };
+		case CoursesAction.ADD_COURSE:
+		  return {
+			...state,
+			courses: state.courses.concat(action.course)
+		  };
+	*/
+        /*case CoursesAction.EDIT_COURSE:
+		  return {
+			...state,
+			courses: state.courses.map(todo => todo.id === action.course.id ?
+			  action.course :
+			  todo
+			)
+		  };*/
 
-    default:
-      return state;
-  }
+        default:
+            return state;
+    }
 }
 
 

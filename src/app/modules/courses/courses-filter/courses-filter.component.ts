@@ -2,9 +2,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subject } from 'rxjs/Subject';
 
-import { AppModel } from '../../../core/models/app.model';
 import * as CoursesActions from '../../../redux/actions/courses.action';
-import { CourseModel } from '../../../core/models/course.model';
+
 
 @Component({
   selector: 'tr-courses-filter',
@@ -14,16 +13,16 @@ import { CourseModel } from '../../../core/models/course.model';
 export class CoursesFilterComponent implements OnInit, OnDestroy {
   searchInput: string;
   courses$: Store<any>;
-  filterResult: CourseModel[] | any;
+  filterResult: any;
   private ngUnsubscribe: Subject<void> = new Subject<void>();
 
-  constructor(private store: Store<AppModel>) { }
+  constructor(private store: Store<any>) { }
 
   ngOnInit() {
   }
 
   filterCourses(): void {
-    this.courses$ = this.store.select('courses');
+    this.courses$ = this.store.select('data');
     this.courses$
       .takeUntil(this.ngUnsubscribe)
       .subscribe(

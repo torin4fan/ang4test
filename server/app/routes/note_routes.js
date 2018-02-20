@@ -43,7 +43,7 @@ module.exports = function (router, db) {
             const courseId = {'_id': new ObjectID(id)};
             
             try {
-                db.collection('list').deleteOne(courseId, (err, item) => {
+                db.collection('list').findOneAndDelete(courseId, (err, item) => {
                     res.send(item);
                 });
             } catch (err) {
