@@ -1,8 +1,6 @@
 import * as CoursesActions from '../actions/courses.action';
 import { CoursesModel } from '../../core/models/courses.model';
 
-export type Action = CoursesActions.All;
-
 const defaultState: CoursesModel = {
     data: [],
     filter: []
@@ -13,7 +11,7 @@ const newState = (state, newData) => {
     return Object.assign({}, state, newData);
 };
 
-export function coursesReducer(state = defaultState, action: Action): CoursesModel {
+export function coursesReducer(state = defaultState, action): CoursesModel {
     switch (action.type) {
         case CoursesActions.GET_COURSES:
             return {

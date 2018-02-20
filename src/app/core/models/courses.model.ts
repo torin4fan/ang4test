@@ -10,7 +10,3 @@ export interface CoursesModel {
   data: CourseModel[];
   filter: CourseModel[];
 }
-
-export interface AppCourseModel {
-    courses: CoursesModel;
-}
