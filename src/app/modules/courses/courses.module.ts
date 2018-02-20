@@ -15,27 +15,27 @@ import { AddEditCourseService } from './add-edit-course/add-edit-course.service'
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    CoreModule,
-    FormsModule,
-    ReactiveFormsModule,
-    CoursesRoutingModule
-  ],
+    imports: [
+        CommonModule,
+        CoreModule,
+        FormsModule,
+        ReactiveFormsModule,
+        CoursesRoutingModule
+    ],
 
-  providers: [
-    CoursesListService,
-    AddEditCourseService
-  ],
+    providers: [
+        CoursesListService,
+        AddEditCourseService
+    ],
 
-  declarations: [
-    CoursesLayoutComponent,
-    CoursesListComponent,
-    AddEditCourseComponent,
-    CoursesFilterComponent,
-    BreadcrumbComponent,
-    FilterPipe
-  ],
+    declarations: [
+        CoursesLayoutComponent,
+        CoursesListComponent,
+        AddEditCourseComponent,
+        CoursesFilterComponent,
+        BreadcrumbComponent,
+        FilterPipe
+    ],
 })
 export class CoursesModule {
 }

@@ -6,31 +6,30 @@ import { LoginPageComponent } from './modules/auth/login-page/login-page.compone
 import { PageNotFoundComponent } from './core/components/page-not-found/page-not-found.component';
 
 
-
 const routes: Routes = [
-  {
-    path: 'courses',
-    component: AppComponent,
-    children: [
-      {
-        path: '',
-        loadChildren: './modules/courses/courses.module#CoursesModule'
-      },
-    ]
-  },
-  {
-    path: 'login',
-    component: LoginPageComponent
-  },
-  { path: '',   redirectTo: '/courses', pathMatch: 'full' },
-  { path: '**', component: PageNotFoundComponent }
+    {
+        path: 'courses',
+        component: AppComponent,
+        children: [
+            {
+                path: '',
+                loadChildren: './modules/courses/courses.module#CoursesModule'
+            },
+        ]
+    },
+    {
+        path: 'login',
+        component: LoginPageComponent
+    },
+    {path: '', redirectTo: '/courses', pathMatch: 'full'},
+    {path: '**', component: PageNotFoundComponent}
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forRoot(routes, {preloadingStrategy: PreloadAllModules})
-  ],
-  exports: [RouterModule]
+    imports: [
+        RouterModule.forRoot(routes, {preloadingStrategy: PreloadAllModules})
+    ],
+    exports: [RouterModule]
 })
 export class AppRoutingModule {
 }

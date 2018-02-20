@@ -6,41 +6,42 @@ import * as CoursesActions from '../../../redux/actions/courses.action';
 
 
 @Component({
-  selector: 'tr-courses-filter',
-  templateUrl: './courses-filter.component.html',
-  styleUrls: ['./courses-filter.component.scss']
+    selector: 'tr-courses-filter',
+    templateUrl: './courses-filter.component.html',
+    styleUrls: ['./courses-filter.component.scss']
 })
 export class CoursesFilterComponent implements OnInit, OnDestroy {
-  searchInput: string;
-  courses$: Store<any>;
-  filterResult: any;
-  private ngUnsubscribe: Subject<void> = new Subject<void>();
+    searchInput: string;
+    courses$: Store<any>;
+    filterResult: any;
+    private ngUnsubscribe: Subject<void> = new Subject<void>();
 
-  constructor(private store: Store<any>) { }
+    constructor(private store: Store<any>) {
+    }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
 
-  filterCourses(): void {
-    this.courses$ = this.store.select('data');
-    this.courses$
-      .takeUntil(this.ngUnsubscribe)
-      .subscribe(
-      response => {
-        this.filterResult = response.courses.filter(item => {
-          return !!this.searchInput
-             ? item.title.indexOf(this.searchInput) !== -1
-             : '';
-         });
-      }
-    );
+    filterCourses(): void {
+        this.courses$ = this.store.select('data');
+        this.courses$
+            .takeUntil(this.ngUnsubscribe)
+            .subscribe(
+                response => {
+                    this.filterResult = response.courses.filter(item => {
+                        return !!this.searchInput
+                            ? item.title.indexOf(this.searchInput) !== -1
+                            : '';
+                    });
+                }
+            );
 
-    this.store.dispatch(new CoursesActions.FilterCourse(this.filterResult));
-  }
+        this.store.dispatch(new CoursesActions.FilterCourse(this.filterResult));
+    }
 
-  ngOnDestroy(): void {
-    this.ngUnsubscribe.next();
-    this.ngUnsubscribe.complete();
-  }
+    ngOnDestroy(): void {
+        this.ngUnsubscribe.next();
+        this.ngUnsubscribe.complete();
+    }
 
 }

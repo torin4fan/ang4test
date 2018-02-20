@@ -7,37 +7,35 @@ import { LoginFormModel } from './login-page.model';
 import { error } from 'util';
 
 
-
 @Injectable()
 export class LoginPageService {
 
-  constructor(
-    private fb: FormBuilder,
-  ) {}
+    constructor(private fb: FormBuilder,) {
+    }
 
-  createForm(): FormGroup {
-    return this.fb.group({
-      loginUser: ['', [
-                        Validators.required,
-                        Validators.pattern(RegExpConstant.latin)
-                      ]
-      ],
-      passwordUser: ['', [
-                            Validators.required,
-                            Validators.pattern(RegExpConstant.latinAndNumber)
-                          ]
-      ],
-    });
-  }
+    createForm(): FormGroup {
+        return this.fb.group({
+            loginUser: ['', [
+                Validators.required,
+                Validators.pattern(RegExpConstant.latin)
+                ]
+            ],
+            passwordUser: ['', [
+                Validators.required,
+                Validators.pattern(RegExpConstant.latinAndNumber)
+                ]
+            ],
+        });
+    }
 
-  checkLogin(userCred: LoginFormModel): Observable<any>  {
-    let result: string | boolean;
+    checkLogin(userCred: LoginFormModel): Observable<any> {
+        let result: string | boolean;
 
-    result = (userCred.loginUser === 'q' && userCred.passwordUser === 'q') ? userCred.loginUser : false;
+        result = (userCred.loginUser === 'q' && userCred.passwordUser === 'q') ? userCred.loginUser : false;
 
-    return new Observable(observer => {
-      observer.next(result);
-      observer.complete();
-    });
-  }
+        return new Observable(observer => {
+            observer.next(result);
+            observer.complete();
+        });
+    }
 }
