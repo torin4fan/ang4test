@@ -42,8 +42,7 @@ export class DeleteCourse implements Action {
 export class FilterCourse implements Action {
     readonly type = FILTER_COURSE;
 
-    constructor(public filterCourses: CoursesModel) {
-    }
+    constructor(public filteredCourses?: any) {}
 }
 
 export class AddCourse implements Action {

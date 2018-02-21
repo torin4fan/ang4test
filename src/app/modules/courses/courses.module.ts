@@ -12,7 +12,6 @@ import { FilterPipe } from '../../core/pipes/filter.pipe';
 import { CoursesFilterComponent } from './courses-filter/courses-filter.component';
 import { CoreModule } from '../../core/core.module';
 import { AddEditCourseService } from './add-edit-course/add-edit-course.service';
-import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 
 @NgModule({
     imports: [
@@ -33,7 +32,6 @@ import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
         CoursesListComponent,
         AddEditCourseComponent,
         CoursesFilterComponent,
-        BreadcrumbComponent,
         FilterPipe
     ],
 })

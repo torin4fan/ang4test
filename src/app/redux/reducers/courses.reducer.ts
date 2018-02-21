@@ -11,7 +11,7 @@ const newState = (state, newData) => {
     return Object.assign({}, state, newData);
 };
 
-export function coursesReducer(state = defaultState, action): CoursesModel {
+export function coursesReducer(state = defaultState, action) {
     switch (action.type) {
         case CoursesActions.GET_COURSES:
             return {
@@ -25,6 +25,9 @@ export function coursesReducer(state = defaultState, action): CoursesModel {
                 data: state.data.filter(item => item._id !== action.idCourse),
                 filter: state.filter.filter(item => item._id !== action.idCourse)
             };
+
+        case CoursesActions.FILTER_COURSE:
+            return newState(state, {filter: action.filteredCourses});
 
         /*case CoursesAction.FILTER_COURSE:
 		  return newState(state, {filter: action.filterCourses});
