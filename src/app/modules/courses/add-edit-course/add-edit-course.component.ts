@@ -3,6 +3,8 @@ import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
 import { AddEditCourseService } from './add-edit-course.service';
+import { Store } from '@ngrx/store';
+import { CreateCourse, UpdateCourse } from '../../../redux/actions/courses.action';
 
 @Component({
     selector: 'tr-add-edit-course',
@@ -14,8 +16,11 @@ export class AddEditCourseComponent implements OnInit {
     defaultAuthors: Array<string>;
     private id: string;
 
-    constructor(private addEditCourseService: AddEditCourseService,
-                private route: ActivatedRoute) {
+    constructor(
+        private addEditCourseService: AddEditCourseService,
+        private route: ActivatedRoute,
+        private store: Store<any>
+    ) {
         this.defaultAuthors = [
             'Smith',
             'John',
@@ -24,7 +29,7 @@ export class AddEditCourseComponent implements OnInit {
         ];
     }
 
-    ngOnInit() {
+    ngOnInit(): void {
         this.courseForm = this.addEditCourseService.createForm();
         this.id = this.route.snapshot.paramMap.get('id');
 
@@ -34,14 +39,13 @@ export class AddEditCourseComponent implements OnInit {
     }
 
     getCourse(pageId: string): void {
-        let result: any;
-        result = this.addEditCourseService.getCourse(pageId);
-        result.subscribe(response => {
-            this.courseForm.reset(response);
-        });
+        this.addEditCourseService.getCourse(pageId)
+            .subscribe(response => this.courseForm.reset(response));
     }
 
     onSubmit(): void {
-        this.addEditCourseService.addEditCourse(this.courseForm.value, this.id);
+        (this.id)
+            ? this.store.dispatch(new UpdateCourse(this.courseForm.value, this.id))
+            : this.store.dispatch(new CreateCourse(this.courseForm.value));
     }
 }

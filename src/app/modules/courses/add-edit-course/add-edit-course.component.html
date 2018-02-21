@@ -79,7 +79,7 @@
                 </div>
             </div>
             <div class="form-group row">
-                <button class="btn btn-success">Save</button>
+                <button [disabled]="courseForm.pristine || courseForm.invalid" class="btn btn-success">Save</button>
                 <a routerLink="/" class="btn btn-info">Cancel</a>
             </div>
         </form>

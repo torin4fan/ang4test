@@ -29,27 +29,6 @@ export function coursesReducer(state = defaultState, action) {
         case CoursesActions.FILTER_COURSE:
             return newState(state, {filter: action.filteredCourses});
 
-        /*case CoursesAction.FILTER_COURSE:
-		  return newState(state, {filter: action.filterCourses});
-
-		case CoursesAction.DELETE_COURSE:
-		  return newState(state, {courses: action.courses});
-
-		case CoursesAction.ADD_COURSE:
-		  return {
-			...state,
-			courses: state.courses.concat(action.course)
-		  };
-	*/
-        /*case CoursesAction.EDIT_COURSE:
-		  return {
-			...state,
-			courses: state.courses.map(todo => todo.id === action.course.id ?
-			  action.course :
-			  todo
-			)
-		  };*/
-
         default:
             return state;
     }
